@@ -1,7 +1,6 @@
 let request = require('request');
 let cheerio = require('cheerio');
 let fs = require('fs');
-let res;
 
 let requestPorts = async ()=>{
     for(let y = 1; y< 386; y++) {
@@ -13,7 +12,7 @@ let requestPorts = async ()=>{
                 for(let i = 2; i < 52; i ++) {
                     let a = $("body > main > div > div > div:nth-child(1) > div:nth-child(5) > div.filters_results > div:nth-child(2) > div > div.mt-table.mt-table-responsive > table > tbody > tr:nth-child(" + i + ") > td:nth-child(2) > a");
                     try {
-                        res = unescape(a[0].attribs.href);
+                        let res = unescape(a[0].attribs.href);
                         let idPort = res.split("/")[5];
                         let Country = (res.split("/")[6]).split("_")[0];
                         let port = (res.split("/")[6]).split(":")[1];
@@ -22,7 +21,7 @@ let requestPorts = async ()=>{
                         fs.appendFileSync("ports.txt", result)
                     } catch (e) {
                         if(e){
-                            fs.appendFileSync("errors.txt", res + "\n")
+                            console.error(e.message)
                         }
                     }
                 }
