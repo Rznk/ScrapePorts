@@ -4,7 +4,7 @@ let fs = require('fs');
 
 let requestPorts = async ()=>{
     for(let y = 1; y< 386; y++) {
-        await request("https://www.marinetraffic.com/ua/ais/index/ports/all/page:"+ y +"/per_page:50", async (err, response, body) => {
+        await request("testtest"+ y +"/per_page:50", async (err, response, body) => {
             if (!err) {
                 let $ = cheerio.load(body, {
                     normalizeWhitespace: true
